@@ -18,7 +18,9 @@ The entry panel has:
 - Three leds, each blinks for 3 seconds when the it's respective button is pressed
 
 ## Webhook
-The applet _Post a Tweet with the ESP8266_ by rffsantos16 in [IFTTT](https://ifttt.com/) was used to connect our NodeMCU ESP8266 to my twitter account.
+The applet _Post a Tweet with the ESP8266_ by rffsantos16 in [IFTTT](https://ifttt.com/) was used to connect our NodeMCU ESP8266 to my twitter account @baguy_chan.
+
+It was necessary to create a random number generator so Tweeter wouldn't block the warnings.
 
 ## Data
 To verify the data, the applet _Automatically save every Tweet you post to a Google spreadsheet_ by leorstern was used to save every tweet to a Google spreadsheet in my Google Drive.
