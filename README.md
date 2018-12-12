@@ -15,7 +15,7 @@ The entry panel has:
   - One button sends a warning that recicling garbage collector is entrying the neighborhood
   - One button sends a warning that normal garbage collector is entrying the neighborhood
   - One button sends a warning of risk of flooding
-- Three leds, each blinks for 3 seconds when the it's respective button is pressed
+- Three leds, each blinks for 3 seconds when it's respective button is pressed
 
 ## Webhook
 The applet _Post a Tweet with the ESP8266_ by rffsantos16 in [IFTTT](https://ifttt.com/) was used to connect our NodeMCU ESP8266 to my twitter account @baguy_chan.
