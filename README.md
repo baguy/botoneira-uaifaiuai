@@ -3,7 +3,7 @@ Entry panel with buttons to send tweet messages with relevant information to res
 
 ## Team:
 - [Aruan Moreira](aruanmoraes@gmail.com)
-- [Mayra Bueno](https://github.com/baguy)
+- [Mayra Bueno @baguy](https://github.com/baguy)
 - [Beto Cadilhe](https://github.com/cadilhe)
 - Edson
 
