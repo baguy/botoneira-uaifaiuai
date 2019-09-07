@@ -1,5 +1,5 @@
 //
-// Botoneira de 3 botões que enviam tweets e 
+// Botoneira de 3 botões que enviam tweets e
 // emails padrões com avisos para condomínio
 //
 
@@ -43,9 +43,9 @@ void setup() {
     Serial.print(".");
   }
   Serial.println("Conectado");
-  Serial.println(WiFi.localIP()); // mostra o IP do servidor 
-  
-  
+  Serial.println(WiFi.localIP()); // mostra o IP do servidor
+
+
 }
 
 void loop() {
@@ -55,161 +55,94 @@ void loop() {
       else{
         digitalWrite(ledWifi, LOW);
       }
+
+  String mensagem = "";
+  String contador = String(random(10000));
+
+  Serial.println("Enviando...");
+
   //
   //// BOTÃO 1 \\\\
   //
   temp1 = digitalRead(button1);
-     
-     if (temp1 == HIGH) {
-        String contador = String(random(10000));
-        Serial.println(contador);
-        digitalWrite(led1, HIGH);
-        delay(3000);
-        digitalWrite(led1, LOW);
-        Serial.println("LED 1 ligou");
-        if (client.connect("maker.ifttt.com",80)) {
-          //
-          // ENVIAR TWEET 1
-          //
-          Serial.println("Enviando...");
-          MakerIFTTT_Key ="mTzjm0PAN54SZCTTcSti7";
-          // EVENT (configurado no IFTTT)
-          MakerIFTTT_Event ="tweet";
-          p = post_rqst;
-          p = append_str(p, "POST /trigger/");
-          p = append_str(p, MakerIFTTT_Event);
-          p = append_str(p, "/with/key/");
-          p = append_str(p, MakerIFTTT_Key);
-          p = append_str(p, " HTTP/1.1\r\n");
-          p = append_str(p, "Host: maker.ifttt.com\r\n");
-          p = append_str(p, "Content-Type: application/json\r\n");
-          p = append_str(p, "Content-Length: ");
-          content_length_here = p;
-          p = append_str(p, "NN\r\n");
-          p = append_str(p, "\r\n");
-          json_start = p;
-          p = append_str(p, "{\"value1\":\"");
-          // MENSAGEM ENVIADA PELO TWEET 1
-          p = append_str(p, "Coleta de LIXO ORGÂNICO no condomínio ");
-          p = append_str(p, "\",\"value2\":\"");
-          p = append_str(p, contador);
-          p = append_str(p, "\",\"value3\":\"");
-          p = append_str(p, "");
-          p = append_str(p, "\"}");
 
-          Serial.println("Tweet 1 enviado");
-      
-          compi= strlen(json_start);
-          content_length_here[0] = '0' + (compi/10);
-          content_length_here[1] = '0' + (compi%10);
-          client.print(post_rqst);   
-  }
-        delay(1000);
-       }
+    if (temp1 == HIGH) {
+      digitalWrite(led1, HIGH);
+      delay(3000);
+      digitalWrite(led1, LOW);
+      Serial.println("LED 1 ligou");
+
+      mensagem = "Coleta de LIXO ORGÂNICO no condomínio";
+
+      delay(1000);
+    }
+
    //
-   //// BOTÃO 2 \\\\ 
-   //   
+   //// BOTÃO 2 \\\\
+   //
    temp2 = digitalRead(button2);
-   
-     if (temp2 == HIGH) {
-        String contador = String(random(1000));
-        Serial.println(contador);
-        
-        digitalWrite(led2, HIGH);
-        delay(3000);
-        digitalWrite(led2, LOW);
-        Serial.println("LED 2 ligou");
 
-        delay(1000);
+    if (temp2 == HIGH) {
+      digitalWrite(led2, HIGH);
+      delay(3000);
+      digitalWrite(led2, LOW);
+      Serial.println("LED 2 ligou");
 
-        if (client.connect("maker.ifttt.com",80)) {
-        //
-        // ENVIAR TWEET 2
-        //
-          Serial.println("Enviando tweet 2...");
-          MakerIFTTT_Key ="mTzjm0PAN54SZCTTcSti7";
-          MakerIFTTT_Event ="tweet";
-          p = post_rqst;
-          p = append_str(p, "POST /trigger/");
-          p = append_str(p, MakerIFTTT_Event);
-          p = append_str(p, "/with/key/");
-          p = append_str(p, MakerIFTTT_Key);
-          p = append_str(p, " HTTP/1.1\r\n");
-          p = append_str(p, "Host: maker.ifttt.com\r\n");
-          p = append_str(p, "Content-Type: application/json\r\n");
-          p = append_str(p, "Content-Length: ");
-          content_length_here = p;
-          p = append_str(p, "NN\r\n");
-          p = append_str(p, "\r\n");
-          json_start = p;
-          p = append_str(p, "{\"value1\":\"");
-          // MENSAGEM ENVIADA PELO TWEET 2:
-          p = append_str(p, "Coleta de LIXO RECICLÁVEL no condomínio");
-          p = append_str(p, "\",\"value2\":\"");
-          p = append_str(p, contador);
-          p = append_str(p, "\",\"value3\":\"");
-          p = append_str(p, "");
-          p = append_str(p, "\"}");
+      mensagem = "Coleta de LIXO RECICLÁVEL no condomínio";
 
-          Serial.println("Tweet 2 enviado");
-      
-          compi= strlen(json_start);
-          content_length_here[0] = '0' + (compi/10);
-          content_length_here[1] = '0' + (compi%10);
-          client.print(post_rqst);
-  }
-        delay(1000);
-       }
+      delay(1000);
+    }
 
   //
   //// BOTÃO 3 \\\\
   //
   temp3 = digitalRead(button3);
-     
-     if (temp3 == HIGH) {
-        String contador = String(random(1000));
-        Serial.println(contador);
-        
-        digitalWrite(led3, HIGH);
-        delay(3000);
-        digitalWrite(led3, LOW);
-        Serial.println("LED 3 ligou");
 
-        delay(1000);
+    if (temp3 == HIGH) {
+      digitalWrite(led3, HIGH);
+      delay(3000);
+      digitalWrite(led3, LOW);
+      Serial.println("LED 3 ligou");
 
-        if (client.connect("maker.ifttt.com",80)) {
-          Serial.println("Enviando tweet 3...");
-          MakerIFTTT_Key ="mTzjm0PAN54SZCTTcSti7";
-          MakerIFTTT_Event ="tweet";
-          p = post_rqst;
-          p = append_str(p, "POST /trigger/");
-          p = append_str(p, MakerIFTTT_Event);
-          p = append_str(p, "/with/key/");
-          p = append_str(p, MakerIFTTT_Key);
-          p = append_str(p, " HTTP/1.1\r\n");
-          p = append_str(p, "Host: maker.ifttt.com\r\n");
-          p = append_str(p, "Content-Type: application/json\r\n");
-          p = append_str(p, "Content-Length: ");
-          content_length_here = p;
-          p = append_str(p, "NN\r\n");
-          p = append_str(p, "\r\n");
-          json_start = p;
-          p = append_str(p, "{\"value1\":\"");
-          // MENSAGEM ENVIADA PELO TWEET 3:
-          p = append_str(p, "Risco de alagamento no condomínio");
-          p = append_str(p, "\",\"value2\":\"");
-          p = append_str(p, contador);
-          p = append_str(p, "\",\"value3\":\"");
-          p = append_str(p, "");
-          p = append_str(p, "\"}");
+      mensagem = "Risco de alagamento no condomínio";
 
-          Serial.println("Tweet 3 enviado");
-      
-          compi= strlen(json_start);
-          content_length_here[0] = '0' + (compi/10);
-          content_length_here[1] = '0' + (compi%10);
-          client.print(post_rqst);
-  }
-        delay(1000);
-       }
+      delay(1000);
+    }
+
+    if (client.connect("maker.ifttt.com",80)) {
+      Serial.println("Enviando tweet 3...");
+      MakerIFTTT_Key ="mTzjm0PAN54SZCTTcSti7";
+      MakerIFTTT_Event ="tweet";
+      p = post_rqst;
+      p = append_str(p, "POST /trigger/");
+      p = append_str(p, MakerIFTTT_Event);
+      p = append_str(p, "/with/key/");
+      p = append_str(p, MakerIFTTT_Key);
+      p = append_str(p, " HTTP/1.1\r\n");
+      p = append_str(p, "Host: maker.ifttt.com\r\n");
+      p = append_str(p, "Content-Type: application/json\r\n");
+      p = append_str(p, "Content-Length: ");
+      content_length_here = p;
+      p = append_str(p, "NN\r\n");
+      p = append_str(p, "\r\n");
+      json_start = p;
+      p = append_str(p, "{\"value1\":\"");
+      // MENSAGEM ENVIADA PELO TWEET 3:
+      p = append_str(p, "Risco de alagamento no condomínio");
+      p = append_str(p, "\",\"value2\":\"");
+      p = append_str(p, contador);
+      p = append_str(p, "\",\"value3\":\"");
+      p = append_str(p, "");
+      p = append_str(p, "\"}");
+
+      Serial.println("Tweet 3 enviado");
+
+      compi= strlen(json_start);
+      content_length_here[0] = '0' + (compi/10);
+      content_length_here[1] = '0' + (compi%10);
+      client.print(post_rqst);
+    }
+
+    delay(1000);
+
 }
